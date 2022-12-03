@@ -1,5 +1,5 @@
 import { ArrowLeft, Camera } from "phosphor-react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { FeedbackType, feedbackTypes } from ".."
 import { CloseButton } from "../../CloseButton"
 import { ScreenshotButton } from "../ScreenshotButton";
@@ -7,11 +7,22 @@ import { ScreenshotButton } from "../ScreenshotButton";
 interface FeedbackContentStepProps {
   feedbackType: FeedbackType;
   onFeedbackTypeRestartRequested: () => void;
+  onFeedbackSent: () => void;
 }
 
-export function FeedbackContentStep({ feedbackType, onFeedbackTypeRestartRequested }: FeedbackContentStepProps) {
+export function FeedbackContentStep({ feedbackType, onFeedbackTypeRestartRequested, onFeedbackSent }: FeedbackContentStepProps) {
   const [screenshot, setScreenshot] = useState<string | null>(null)
+  const [comment, setComment] = useState('')
+
   const feedbackTypeInfo = feedbackTypes[feedbackType]
+
+  function handleSubmitFeedback(event: FormEvent) {
+    event.preventDefault()
+
+    console.log({screenshot, comment})
+
+    onFeedbackSent()
+  }
 
   return(
     <>
@@ -30,8 +41,9 @@ export function FeedbackContentStep({ feedbackType, onFeedbackTypeRestartRequest
       <CloseButton />
     </header>
     
-    <form className="my-4 w-full">
+    <form onSubmit={handleSubmitFeedback} className="my-4 w-full">
       <textarea
+        onChange={event => setComment(event.target.value)}
         className="
         min-w-[304px] 
         w-full min-h-[112px] 
@@ -60,6 +72,7 @@ export function FeedbackContentStep({ feedbackType, onFeedbackTypeRestartRequest
 
         <button
           type="submit"
+          disabled={comment.length === 0}
           className="
           p-2 
           bg-brand-500 
@@ -76,7 +89,9 @@ export function FeedbackContentStep({ feedbackType, onFeedbackTypeRestartRequest
           focus:ring-offset-2
           focus:ring-offset-zinc-900
           focus:ring-brand-500
-          transition-colors"
+          transition-colors
+          disabled:opacity-50
+          disabled:hover:bg-brand-500"
         >Enivar feedback</button>
       </footer>
     </form>
