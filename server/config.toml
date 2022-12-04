@@ -3,6 +3,6 @@ port = "9000"
 
 [database]
 host = "localhost"
-user = ""
-password = ""
+user = "user_feedback"
+password = "1234"
 name = "api_feedback"
