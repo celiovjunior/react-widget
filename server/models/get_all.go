@@ -2,7 +2,7 @@ package models
 
 import "github.com/celiovjunior/goserverwidget/db"
 
-func GetAll(id int64) (feedbacks []Feedback, err error) {
+func GetAll() (feedbacks []Feedback, err error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
 		return
