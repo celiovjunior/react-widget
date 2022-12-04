@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/celiovjunior/goserverwidget/models"
+	"github.com/go-chi/chi/v5"
 )
 
 func Get(w http.ResponseWriter, r *http.Request) {
