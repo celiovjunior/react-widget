@@ -64,7 +64,7 @@ export function WidgetForm() {
       }
 
       <footer>
-        Feito com &hearts; por <a className="underline underline-offset-2" href="https://github.com/celiovjunior">Célio Jr.</a>
+        Feito com &hearts; por <a target="_blank" className="underline underline-offset-2" href="https://github.com/celiovjunior">Célio Jr.</a>
       </footer>
     </div>
   )
