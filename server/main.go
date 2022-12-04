@@ -22,5 +22,6 @@ func main() {
 	r.Get("/", handlers.List)
 	r.Get("/{id}", handlers.Get)
 
+	fmt.Println("Server is running 🐎")
 	http.ListenAndServe(fmt.Sprintf(":%s", configs.GetServerPort()), r)
 }
