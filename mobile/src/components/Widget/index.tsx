@@ -1,11 +1,16 @@
 import React, { useRef } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
+import { feedbackTypes } from '../../utils/feedbackTypes';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import { ChatTeardropDots } from 'phosphor-react-native'
 import { styles } from './styles';
 import { theme } from '../../theme';
 import { Options } from '../Options';
+import { Form } from '../Form';
+
+
+export type FeedbackType = keyof typeof feedbackTypes
 
 export function Widget() {
   const bottomSheetRef = useRef<BottomSheet>(null)
@@ -32,7 +37,9 @@ export function Widget() {
         backgroundStyle={styles.modal}
         handleIndicatorStyle={styles.indicator}
       >
-        <Options />
+        <Form
+          feedbackType='BUG'
+        />
       </BottomSheet>
     </>
   );
